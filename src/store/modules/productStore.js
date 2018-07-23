@@ -1,11 +1,24 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import MoltinService from "../../services/moltin";
 
-Vue.use(Vuex);
+// initial state
+const state = {
+    products:[]
+}
 
-export const productStore = new Vuex.Store({
-    state: {
-        products: []
-    },
+//mutations
+const mutations = {
+    setProducts(state,payload){
+        state.products = payload
+    }
+}
+//actions
+const actions  = {
+    getProductHomePage({commit}){
+        MoltinService.getProducts(4).then(response=>{
+            commit('setProducts',response)
+        })
+    }
+}
 
-})
+//getters
+const getters = {}

@@ -8,14 +8,11 @@ const Moltin = MoltinGateway({
 let products = (() => {
     return {
         getProducts: (limit) => {
-            return Moltin.Products.Filter({}).Limit(limit).All();
+            return Moltin.Products.Limit(limit).All();
         },
         getProductsCategories: (category, limit) => {
             return Moltin.Products.Filter({ eq: { categories: category } }).Limit(limit).All();
         },
-        getProductsHomePage: () => {
-            return Moltin.Products.Filter({}).With('main_image').Limit(4).All()
-        }
     };
 
 })();
