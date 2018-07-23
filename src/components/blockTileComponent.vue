@@ -3,8 +3,20 @@
     <h2 class="blocktile__title">{{ title }}</h2>
     <div class="blocktile__el">
       <img 
-        :src="image" 
-        :alt="alt"
+        src="assets/images/image.png"
+        alt="nike partner"
+      >
+      <img 
+        src="assets/images/1280px-Adidas_Logo.png"
+        alt="adidas partner"
+      >
+      <img 
+        src="assets/images/Reebok-Logo-PNG-Image.png"
+        alt="rebook partner"
+      >
+      <img 
+        src="assets/images/Umbro_logo.png"
+        alt="umbro partner"
       >
     </div>
   </div>
@@ -17,16 +29,6 @@ export default {
     title: {
       type: String,
       required: true
-    },
-    image: {
-      type: String,
-      required: false,
-      default:""
-    },
-    alt: {
-      type: String,
-      required: false,
-      default:""
     }
   }
 };
@@ -34,15 +36,19 @@ export default {
 
 <style lang="stylus" scoped>
   .blocktile
+    position relative
     margin-top 30px
     padding  10px 15px
     &__title
       font-family Open Sans
       font-size 36px
       color #111111
+      text-align center
     &__el
-      margin 15px
+      margin-left 10%
+      margin-right 10%
     &__el  > img
       float left
-      padding 30px 66px   
+      padding 42px 61px
+      margin 0px 30px   
 </style>
