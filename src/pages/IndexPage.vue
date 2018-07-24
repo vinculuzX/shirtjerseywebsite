@@ -33,12 +33,16 @@
 </template>
 
 <script>
-import BlockTileComponent  from '../components/blockTileComponent.vue'
+import BlockTileComponent  from '../components/blockTileComponent.vue';
+import {mapActions,mapState} from 'vuex';    
     export default {
         name:'IndexPage',
         components:{
           BlockTileComponent
         },
+        computed:mapState({
+          products: state => state.products.all
+        }),
         data:()=>({
           products:[
             {

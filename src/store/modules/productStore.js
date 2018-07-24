@@ -22,3 +22,11 @@ const actions  = {
 
 //getters
 const getters = {}
+
+export default {
+    namespace:true,
+    state,
+    mutations,
+    action,
+    getters
+}
