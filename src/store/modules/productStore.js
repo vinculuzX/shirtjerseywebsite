@@ -27,6 +27,6 @@ export default {
     namespace:true,
     state,
     mutations,
-    action,
+    actions,
     getters
 }
