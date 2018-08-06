@@ -2,20 +2,20 @@ import MoltinService from "../../services/moltin";
 
 // initial state
 const state = {
-    products:[]
+    all: []
 }
 
 //mutations
 const mutations = {
-    setProducts(state,payload){
-        state.products = payload
+        setProducts(state, products) {
+            state.all = products;
+        }
     }
-}
-//actions
-const actions  = {
-    getProductHomePage({commit}){
-        MoltinService.getProducts(4).then(response=>{
-            commit('setProducts',response)
+    //actions
+const actions = {
+    getProductHomePage({ commit }) {
+        MoltinService.getProducts().then(response => {
+            commit('setProducts', response);
         })
     }
 }
@@ -24,9 +24,9 @@ const actions  = {
 const getters = {}
 
 export default {
-    namespace:true,
+    namespace: true,
     state,
     mutations,
     actions,
     getters
-}
+};

@@ -7,6 +7,9 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
+    node: {
+        fs: 'empty'
+    },
     devServer: {
         hot: true,
         watchOptions: {

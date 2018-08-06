@@ -19,11 +19,11 @@
       <div class="clear"/>
       <div class="content__products">
         <div 
-          v-for="product in products" 
+          v-for="product in products.data"
           :key="product.id" 
           class="products">
-          <a :href="product.id"><img 
-            :src="product.image" 
+          <a :href="product.slug"><img 
+            :src="getProductThumb(product)" 
             :alt="product.description"></a>
         </div>
       </div>
@@ -34,7 +34,7 @@
 
 <script>
 import BlockTileComponent  from '../components/blockTileComponent.vue';
-import {mapActions,mapState} from 'vuex';    
+import {mapState} from 'vuex';    
     export default {
         name:'IndexPage',
         components:{
@@ -43,30 +43,23 @@ import {mapActions,mapState} from 'vuex';
         computed:mapState({
           products: state => state.products.all
         }),
-        data:()=>({
-          products:[
-            {
-              id:"1",
-              image:"assets/images/product1.png",
-              description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce libero ex"
-            },
-            {
-              id:"2",
-              image:"assets/images/product2.png",
-              description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce libero ex"
-            },
-            {
-              id:"3",
-              image:"assets/images/product3.png",
-              description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce libero ex"
-            },
-            {
-              id:"4",
-              image:"assets/images/product4.png",
-              description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce libero ex"
+        created () {
+          this.$store.dispatch('getProductHomePage')
+        },
+        methods:{
+          getProductThumb: function (product) {
+              var placeholder = 'https://placeholdit.imgix.net/~text?txtsize=69&txt=824%C3%971050&w=824&h=1050'
+              try {
+                var fileId = product.relationships.main_image.data.id
+                var file = this.products.included.main_images.find(function (el) {
+                  return fileId === el.id
+                })
+                return file.link.href || placeholder
+              } catch (e) {
+                return placeholder
+              }
             }
-          ]
-        })
+        }
     }
 </script>
 

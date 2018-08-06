@@ -7,11 +7,8 @@ const Moltin = MoltinGateway({
 // object assign to products
 let products = (() => {
     return {
-        getProducts: (limit) => {
-            return Moltin.Products.Limit(limit).All();
-        },
-        getProductsCategories: (category, limit) => {
-            return Moltin.Products.Filter({ eq: { categories: category } }).Limit(limit).All();
+        getProducts: () => {
+            return Moltin.Products.Filter({}).With('main_image').Limit(4).All()
         },
     };
 
